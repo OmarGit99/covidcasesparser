@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
             HashMap<String, HashMap <String,HashMap<String,String>>> final_hash = new HashMap<>();
 
-
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Gdata");
             for(String district: districts){
                 HashMap<String, String> sub_hash = new HashMap<>();
 
@@ -160,15 +160,16 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
+
                 }
-                HashMap <String,HashMap<String,String>> timestamp = new HashMap<>();
+                ref.child(district).child(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date())).setValue(sub_hash);
+                /*HashMap <String,HashMap<String,String>> timestamp = new HashMap<>();
                 timestamp.put(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()),sub_hash);
-                final_hash.put(district, timestamp);
+                final_hash.put(district, timestamp);*/
 
             }
             Log.i("codeya", final_hash.toString());
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Gdata");
-            ref.setValue(final_hash);
+
 
 
 
