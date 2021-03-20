@@ -23,6 +23,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
+    ArrayList<String> districts;
 
     public class Downloader extends AsyncTask<String, Void, Map<String , String[]>>{
 
@@ -82,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
                         li[2] = cropped_tdata.get(i+3);
 
                         casesanddistricts.put(cropped_tdata.get(i), li);
+                        districts.add(cropped_tdata.get(i));
+
                         next =0;
                     }
                     else if(next == 1){
@@ -90,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
                         li[1] = cropped_tdata.get(i+2);
 
                         casesanddistricts.put(cropped_tdata.get(i), li);
+                        districts.add(cropped_tdata.get(i));
+
                         next = 0;
                     }
                 }
@@ -112,14 +117,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        districts = new ArrayList<>();
 
         Downloader downloader = new Downloader();
         try {
             Map<String, String[]> texts = downloader.execute("https://arogya.maharashtra.gov.in/1175/Novel--Corona-Virus").get();
 
-            for(String k : texts.get("Kolapur")){
-                Log.i("codeya", k);
+            for(String district: districts){
+                for (String caseordeath: texts.get(district)){
+                    Log.i("codeya", district + ": " + caseordeath);             //UPLOAD DATA TO FIREBASE FROM HERE
+                }
             }
+
+
 
         } catch (ExecutionException e) {
             e.printStackTrace();
