@@ -130,50 +130,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         districts = new ArrayList<>();
 
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword("owner@project.com", "owneraccess")
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d("codeya", "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            //updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w("codeya", "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(MainActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-
-                        }
-                    }
-                });
 
         Downloader downloader = new Downloader();
         try {
             Map<String, String[]> texts = downloader.execute("https://arogya.maharashtra.gov.in/1175/Novel--Corona-Virus").get();
 
+            HashMap<String, HashMap<String,String>> final_hash = new HashMap<>();
+
+
             for(String district: districts){
-                String final_str = district +": \n";
+                HashMap<String, String> sub_hash = new HashMap<>();
+
                 for (int i =0; i< 4;i++){
                     if(i == 0){
-                        final_str = final_str+"\t Name: "+ district+ "\n";
-                        final_str = final_str+"\t AC: "+ texts.get(district)[i]+"\n";
+                        sub_hash.put("Name", district);
+                        sub_hash.put("AC", texts.get(district)[i]);
                     }
                     else if(i ==1){
-                        final_str = final_str+"\t Death cases: "+ texts.get(district)[i]+"\n";
+                        sub_hash.put("Death cases",texts.get(district)[i]);
+
                     }
                     else{
-                        final_str = final_str+"\t Other: "+ texts.get(district)[i]+"\n";
+                        sub_hash.put("Other", texts.get(district)[i]);
+
                     }
 
                 }
-                Log.i("codeya", final_str);
+                final_hash.put(district, sub_hash);
 
             }
+            Log.i("codeya", final_hash.toString());
 
 
 
