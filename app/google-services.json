@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "528382328552",
+    "project_id": "covidaware-c6960",
+    "storage_bucket": "covidaware-c6960.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528382328552:android:42894318e9a1f15ee8135d",
+        "android_client_info": {
+          "package_name": "com.example.covidtrax"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528382328552-ndkpgd15fupkl9umt1jh4lvmv8d5bbog.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmxZPGECwUkngzYVh0ORSVL1J69b8COBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528382328552-ndkpgd15fupkl9umt1jh4lvmv8d5bbog.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528382328552:android:7904de16cf3e2f6ae8135d",
+        "android_client_info": {
+          "package_name": "com.wasim.covidaware"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528382328552-ndkpgd15fupkl9umt1jh4lvmv8d5bbog.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmxZPGECwUkngzYVh0ORSVL1J69b8COBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528382328552-ndkpgd15fupkl9umt1jh4lvmv8d5bbog.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
