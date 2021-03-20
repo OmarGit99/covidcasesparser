@@ -157,7 +157,8 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }
-                final_hash.put(district, sub_hash);
+                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Gdata");
+                ref.child(district).setValue(sub_hash);
 
             }
             Log.i("codeya", final_hash.toString());
