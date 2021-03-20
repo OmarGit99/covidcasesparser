@@ -26,9 +26,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
@@ -136,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         try {
             Map<String, String[]> texts = downloader.execute("https://arogya.maharashtra.gov.in/1175/Novel--Corona-Virus").get();
 
-            HashMap<String, HashMap<String,String>> final_hash = new HashMap<>();
+            HashMap<String, HashMap <String,HashMap<String,String>>> final_hash = new HashMap<>();
 
 
             for(String district: districts){
@@ -157,11 +161,14 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 }
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Gdata");
-                ref.child(district).setValue(sub_hash);
+                HashMap <String,HashMap<String,String>> timestamp = new HashMap<>();
+                timestamp.put(new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()),sub_hash);
+                final_hash.put(district, timestamp);
 
             }
             Log.i("codeya", final_hash.toString());
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Gdata");
+            ref.setValue(final_hash);
 
 
 
