@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
 
             for(String district: districts){
                 String final_str = district +": \n";
-                for (int i =0; i< texts.get(district).length;i++){
+                for (int i =0; i< 4;i++){
                     if(i == 0){
                         final_str = final_str+"\t Name: "+ district+ "\n";
                         final_str = final_str+"\t AC: "+ texts.get(district)[i]+"\n";
